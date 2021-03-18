@@ -1,0 +1,22 @@
+#FDM{
+  -fx-font:bold 60pt "Arial";
+  -fx-text-fill: white;
+  -fx-alignment: center;
+}
+
+.text-field{
+    -fx-background-color: transparent , transparent , transparent;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 2;
+    -fx-border-color: grey;
+    -fx-text-fill: white;
+}
+
+#btn{
+  -fx-background-color: deepskyblue;
+  -fx-font: 10pt "Arial";
+}
+
+#cr{
+  -fx-text-fill: white;
+}
