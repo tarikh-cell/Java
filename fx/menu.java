@@ -5,6 +5,7 @@ import javafx.stage.Screen;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.*;
 import javafx.scene.control.Menu;
 import javafx.scene.control.Button;
@@ -68,18 +69,27 @@ public class menu extends Application
 
     Button btns = new Button("Q");
 
+    ///////////////////////////////////////////////////////////////////////////
     TextField search=new TextField();
     search.getStyleClass().add("tf");
     search.setPromptText("search");
-    gr.addRow(0, search, btns);
+    gr.addRow(0, menubar);
+    gr.addRow(1, search, btns);
     gr.setGridLinesVisible(true);
     Button btnC = new Button("Clear");
-    
+
     btns.setOnMouseClicked((MouseEvent event) -> {
             //set textfield values
             TextField b = displaySearch();
             for (int x = 1; x < 5; x++){
-              gr.addRow(x, new Text("wasd"));
+              Button r = new Button("wasd");
+              gr.addRow(x, r);
+              r.setOnMouseClicked((MouseEvent evnt) -> {
+                TextField s = displaySearch();
+                gr.getChildren().clear();
+                gr.addRow(0, menubar);
+                gr.addRow(1, r);
+              });
             }
             gr.addRow(5, b);
             gr.addRow(6, btnC);
@@ -88,17 +98,13 @@ public class menu extends Application
     btnC.setOnMouseClicked((MouseEvent event) -> {
             //set textfield values
             gr.getChildren().clear();
-            gr.addRow(0, search, btns);
+            gr.addRow(0, menubar);
+            gr.addRow(1, search, btns);
     });
+    ///////////////////////////////////////////////////////////////////////////
 
-
-    Button btn = new Button();
-    btn.setPrefWidth(100);
-
-    bp.setTop(menubar);
     bp.setLeft(gp);
     bp.setCenter(gr);
-    bp.setRight(btn);
 
     Scene scene = new Scene(bp, 800, 600, Color.rgb(45, 52, 71));
 
