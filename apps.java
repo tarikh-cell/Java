@@ -1,5 +1,4 @@
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
@@ -19,9 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
-import javafx.geometry.Insets;
 import javafx.scene.control.TextField;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.control.PasswordField;
 import javafx.geometry.Pos;
@@ -31,12 +28,19 @@ import javafx.stage.Screen;
 
 public class apps extends Application
 {
+  public static void main(String[] arguments)
+  {
+     Application.launch(arguments);
+  }
+
+
    @Override
    public void start(Stage stage) throws Exception
    {
       BorderPane bp = new BorderPane();
 
-      Image im = new Image("Picture6.png", 100, 100, false, false);
+      //User Icon
+      Image im = new Image("Picture3.png", 100, 100, false, false);
       ImageView imgV = new ImageView(im);
 
       // FDM logo
@@ -90,12 +94,13 @@ public class apps extends Application
       Image ima = new Image("Picture5.png", 30, 30, false, false);
       ImageView imgVi = new ImageView(ima);
 
+      // Set layout and position elements
       log.addRow(0, new Text(""), imgV);
       log.addRow(1, imgVie, tf1);
       log.addRow(2, imgVi, tf2);
       log.addRow(3, new Text(""), btn);
 
-      Text CopyR = new Text("CopyRight © : Associates");
+      Text CopyR = new Text("CopyRight© : All Rights Reserved");
       CopyR.setFill(Color.WHITE);
       bp.setAlignment(CopyR, Pos.CENTER);
       CopyR.setId("cr");
@@ -122,10 +127,4 @@ public class apps extends Application
       stage.show();
    }
 
-
-
-   public static void main(String[] arguments)
-   {
-      Application.launch(arguments);
-   }
 }
