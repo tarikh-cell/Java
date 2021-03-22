@@ -4,3 +4,16 @@
 #gp{
   -fx-background-color: grey;
 }
+
+.tab-pane .tab-header-area .tab-header-background {
+}
+
+.tab-pane .tab-header-area {
+}
+
+.tab-pane {
+}
+
+.tab:selected {
+  -fx-background-color: green;
+}
