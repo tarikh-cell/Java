@@ -2,18 +2,34 @@
 }
 
 #gp{
-  -fx-background-color: grey;
+  -fx-background-color: white;
+  -fx-text-fill: white;
+}
+
+.tab-pane *.tab-header-background
+{
+  -fx-background-color: darkslategrey;
 }
 
 .tab-pane .tab-header-area .tab-header-background {
+  -fx-background-color: darkslategrey;
 }
 
 .tab-pane .tab-header-area {
+  -fx-background-color: darkslategrey;
 }
 
 .tab-pane {
+  -fx-background-color: darkslategrey;
+  -fx-tab-min-height: 4em;
+  -fx-tab-max-height: 4em;
+  -fx-border-radius: 0px;
 }
 
 .tab:selected {
-  -fx-background-color: green;
+  -fx-background-color: darkslategrey;
+}
+
+.tab {
+    -fx-background-color: darkslategrey;
 }
