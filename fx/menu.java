@@ -23,6 +23,7 @@ import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 
 public class menu extends Application
 {
@@ -37,13 +38,11 @@ public class menu extends Application
    {
     BorderPane bp = new BorderPane();
 
-    GridPane grp = displayUser();
+    //GridPane grp = displayUser();
     GridPane gdp = Search();
     TabPane tb = createTabs();
-    tb.setPadding(new Insets(20));
-    tb.getStylesheets().add("style.css");
 
-    bp.setLeft(grp);
+    //bp.setLeft(grp);
     bp.setCenter(tb);
 
     Scene scene = new Scene(bp, 800, 600, Color.rgb(45, 52, 71));
@@ -54,39 +53,34 @@ public class menu extends Application
     stage.show();
    }
 
-   public static TabPane createTabs (){
+   public static TabPane createTabs(){
      TabPane tabPane = new TabPane();
 
      Tab tab = new Tab();
-     Image imag = new Image("search.png", 60, 60, false, false);
-     ImageView imgVie = new ImageView(imag);
-     tab.setGraphic(imgVie);
+     tab.setText("Profile");
      tab.setContent(
      Search()
      );
+     tab.setClosable(false);
      tabPane.getTabs().add(tab);
 
      Tab tab1 = new Tab();
-     Image ima = new Image("search.jpg", 60, 60, false, false);
-     ImageView imgVi = new ImageView(ima);
-     tab1.setGraphic(imgVi);
+     tab1.setText("Search");
      tab1.setContent(new Text("hi"));
+     tab1.setClosable(false);
      tabPane.getTabs().add(tab1);
 
      Tab tab2 = new Tab();
-     Image im = new Image("Picture3.png", 60, 60, false, false);
-     ImageView imgV = new ImageView(im);
-     tab2.setGraphic(imgV);
+     tab2.setText("Add/Remove");
      tab2.setContent(new Text("hi"));
+     tab2.setClosable(false);
      tabPane.getTabs().add(tab2);
 
      Tab tab3 = new Tab();
-     Image i = new Image("Picture3.png", 60, 60, false, false);
-     ImageView imgVe = new ImageView(i);
-     tab3.setGraphic(imgVe);
+     tab3.setText("Survey");
      tab3.setContent(new Text("hi"));
+     tab3.setClosable(false);
      tabPane.getTabs().add(tab3);
-     tabPane.getStylesheets().add("style.css");
 
      return tabPane;
    }
@@ -100,14 +94,21 @@ public class menu extends Application
      ImageView imgV = new ImageView(im);
      gp.getChildren().add(imgV);
      gp.setHalignment(imgV, HPos.CENTER);
-     gp.setHgap(10);
 
-     String[] arr = {"Kahludi","Al Falluga","Admin","A190","01-01-2001"};
-     gp.addRow(1, new Text("Forename:"), new Text(arr[0]));
-     gp.addRow(2, new Text("Surname:"), new Text(arr[1]));
-     gp.addRow(3, new Text("Account Type:"), new Text(arr[2]));
-     gp.addRow(4, new Text("Unique Identifier:"), new Text(arr[3]));
-     gp.addRow(5, new Text("Account made:"), new Text(arr[4]));
+
+
+     Text[] titles = {new Text("Forename:"),new Text("Surname:"), new Text("Account Type:"), new Text("Unique Identifier:"), new Text("Account made:")};
+     Text[] arr = {new Text("Kahludi"),new Text("Al Falluga"),new Text("Admin"),new Text("A190"),new Text("01-01-2001")};
+     for(int i = 0; i < 9; i+=2){
+       titles[i/2].setFill(Color.WHITE);
+       arr[i/2].setFill(Color.WHITE);
+       Separator separator2 = new Separator();
+       separator2.setOrientation(Orientation.HORIZONTAL);
+       gp.addRow(i + 1, titles[(i/2)], arr[(i/2)]);
+       gp.addRow(i + 2, separator2);
+       gp.setColumnSpan(separator2, 2);
+      }
+
      gp.setVgap(10);
      gp.setColumnSpan(imgV, 2);
 
@@ -138,7 +139,7 @@ public class menu extends Application
 
      btns.setOnMouseClicked((MouseEvent event) -> {
              //set textfield values
-             TextField b = displaySearch();
+             TextField b = new TextField(search.getText());
              String[] ar = passUsers();
              for (int x = 1; x < 5; x++){
                Button r = new Button(ar[x]);
@@ -151,6 +152,7 @@ public class menu extends Application
              }
              gr.addRow(5, b);
              gr.addRow(6, btnC);
+             search.clear();
          });
 
      btnC.setOnMouseClicked((MouseEvent event) -> {
