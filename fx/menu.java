@@ -77,7 +77,7 @@ public class menu extends Application
      Text[] titles = {new Text("Forename:"),new Text("Surname:"), new Text("Account Type:"), new Text("Unique Identifier:"), new Text("Account made:")};
      Text[] arr = {new Text("Kahludi"),new Text("Al Falluga"),new Text("Admin"),new Text("A190"),new Text("01-01-2001")};
      for(int i = 0; i < 9; i+=2){
-       String str = titles[(i/2)].getText() + arr[(i/2)].getText();
+       String str = titles[(i/2)].getText() + " " + arr[(i/2)].getText();
        Text row = new Text(str);
        Separator separator2 = new Separator();
        separator2.setOrientation(Orientation.HORIZONTAL);
@@ -95,7 +95,7 @@ public class menu extends Application
      TabPane tabPane = new TabPane();
 
      Tab tab = new Tab();
-     tab.setText("Profile");
+     tab.setText("Search");
      tab.setContent(
      Search()
      );
@@ -103,19 +103,19 @@ public class menu extends Application
      tabPane.getTabs().add(tab);
 
      Tab tab1 = new Tab();
-     tab1.setText("Search");
+     tab1.setText("Add/Remove");
      tab1.setContent(new Text("hi"));
      tab1.setClosable(false);
      tabPane.getTabs().add(tab1);
 
      Tab tab2 = new Tab();
-     tab2.setText("Add/Remove");
+     tab2.setText("Survey");
      tab2.setContent(new Text("hi"));
      tab2.setClosable(false);
      tabPane.getTabs().add(tab2);
 
      Tab tab3 = new Tab();
-     tab3.setText("Survey");
+     tab3.setText("Monitor User Activity");
      tab3.setContent(new Text("hi"));
      tab3.setClosable(false);
      tabPane.getTabs().add(tab3);
@@ -170,10 +170,12 @@ public class menu extends Application
 
      TextField search=new TextField();
      search.setId("tf");
+
      search.setPromptText("search");
      gr.addRow(0, search, btns);
      gr.setGridLinesVisible(false);
      Button btnC = new Button("Clear");
+     btnC.setId("clearButton");
 
      btns.setOnMouseClicked((MouseEvent event) -> {
              //set textfield values
@@ -182,8 +184,10 @@ public class menu extends Application
              for (int x = 1; x < 5; x++){
                Button r = new Button(ar[x]);
                r.setId("ed");
-               r.setTranslateX(15);
                gr.addRow(x, r);
+               search.setStyle("-fx-background-radius: 20 0 0 0;");
+               btns.setStyle("-fx-background-radius: 0 20 0 0;");
+               gr.setColumnSpan(r, 2);
                r.setOnMouseClicked((MouseEvent evnt) -> {
                  TextField s = displaySearch();
                  gr.getChildren().clear();
@@ -192,6 +196,7 @@ public class menu extends Application
              }
              //gr.addRow(5, b);
              gr.addRow(6, btnC);
+             gr.setColumnSpan(btnC, 2);
              search.clear();
          });
 
@@ -199,12 +204,14 @@ public class menu extends Application
              //set textfield values
              gr.getChildren().clear();
              gr.addRow(0, search, btns);
+             search.setStyle("-fx-background-radius: 20 0 0 20;");
+             btns.setStyle("-fx-background-radius: 0 20 20 0;");
      });
      return gr;
    }
 
    public static String[] passUsers(){
-     String[] arr  = {"", "b", "c", "d", "e"};
+     String[] arr  = {"", "Name: Khaludi, Id: 19029021", "Name: Khalud, Id: 19029021", "Name: Khaldi, Id: 19029021", "Name: Khalid, Id: 19029021"};
      return arr;
    }
 
@@ -213,9 +220,18 @@ public class menu extends Application
      Image i = new Image("Picture3.png", 60, 60, false, false);
      ImageView imgVe = new ImageView(i);
      VBox v = new VBox();
-     Text te = new Text("vmekppwekgmropm5g4");
-     v.getChildren().addAll(imgVe, result, te, reset);
+     Button te = new Button("Course: Software Engineering");
+     te.setId("course");
+     Button te2 = new Button("Qualification: Software Engineering Degree");
+     te2.setId("qualification");
+     Button te3 = new Button("Region: London");
+     te3.setId("region");
+     v.getChildren().addAll(imgVe, result, te, te2, te3, reset);
      return v;
+   }
+
+   public static void Add(){
+     TextField addUser = new TextField("Add User to System");
    }
 
 }
