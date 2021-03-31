@@ -5,13 +5,57 @@
 }
 
 #gp{
-  -fx-background-color: grey;
   -fx-text-fill: white;
   -fx-border-width: 3;
   -fx-border-color: blue;
   -fx-border-radius: 5%;
   -fx-background-radius: 5%;
   -fx-min-height: 200px;
+}
+
+#pr{
+  -fx-border-width: 2px 0px 0px 0px;
+  -fx-border-color: blue;
+  -fx-min-width: 17em;
+  -fx-background-color:white;
+  -fx-text-fill: #828282;
+  -fx-font-size: 12px;
+  -fx-font-weight: bold;
+}
+
+#prf{
+  -fx-alignment: CENTER;
+  -fx-background-color: green;
+}
+
+#dsp{
+  -fx-background-color: rgb(192,192,192,0.1);
+  -fx-min-width: 10em;
+  -fx-background-radius: 5.0;
+  -fx-background-insets: 0.0 5.0 0.0 5.0;
+  -fx-padding: 10;
+  -fx-hgap: 10;
+  -fx-vgap: 10;
+}
+
+#btns{
+  -fx-background-color: rgb(192,192,192);
+  -fx-background-radius: 0 20 20 0;
+  -fx-min-height: 3em;
+}
+
+#tf{
+  -fx-background-color: rgb(192,192,192);
+  -fx-background-radius: 20 0 0 20;
+  -fx-min-height: 3em;
+  -fx-min-width: 30em;
+}
+
+#ed{
+  -fx-background-color: rgb(192,192,192);
+  -fx-min-height: 3em;
+  -fx-min-width: 29.5em;
+  -fx-background-radius: 0 0 0 0;
 }
 
 .Image{

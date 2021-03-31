@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
+import javafx.scene.text.*;
 import javafx.scene.text.Font;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.paint.Color;
@@ -38,11 +38,12 @@ public class menu extends Application
    {
     BorderPane bp = new BorderPane();
 
-    //GridPane grp = displayUser();
+    VBox grp = displayUser();
     GridPane gdp = Search();
     TabPane tb = createTabs();
 
     //bp.setLeft(grp);
+    bp.setLeft(grp);
     bp.setCenter(tb);
 
     Scene scene = new Scene(bp, 800, 600, Color.rgb(45, 52, 71));
@@ -51,6 +52,43 @@ public class menu extends Application
     stage.setTitle("FDM - Trainer Skills");
     stage.setScene(scene);
     stage.show();
+   }
+
+   public static VBox displayUser(){
+     VBox users = new VBox();
+     users.setId("pr");
+
+     Text prf = new Text("Profile");
+     prf.setId("prf");
+     TextFlow textFlow = new TextFlow();
+     textFlow.getChildren().add(prf);
+     textFlow.setTextAlignment(TextAlignment.CENTER);
+     textFlow.setPadding(new Insets(13,0,0,0));
+     users.getChildren().add(textFlow);
+
+     VBox display = new VBox();
+     display.setId("dsp");
+     display.setPadding(new Insets(0, 10, 0, 10));
+     display.setSpacing(10);
+     Image im = new Image("Picture3.png", 100, 100, false, false);
+     ImageView imgV = new ImageView(im);
+     display.getChildren().add(imgV);
+
+     Text[] titles = {new Text("Forename:"),new Text("Surname:"), new Text("Account Type:"), new Text("Unique Identifier:"), new Text("Account made:")};
+     Text[] arr = {new Text("Kahludi"),new Text("Al Falluga"),new Text("Admin"),new Text("A190"),new Text("01-01-2001")};
+     for(int i = 0; i < 9; i+=2){
+       String str = titles[(i/2)].getText() + arr[(i/2)].getText();
+       Text row = new Text(str);
+       Separator separator2 = new Separator();
+       separator2.setOrientation(Orientation.HORIZONTAL);
+       display.getChildren().add(row);
+       display.getChildren().add(separator2);
+      }
+    display.setAlignment(Pos.CENTER);
+    users.setSpacing(30);
+    users.getChildren().add(display);
+
+     return users;
    }
 
    public static TabPane createTabs(){
@@ -85,7 +123,7 @@ public class menu extends Application
      return tabPane;
    }
 
-   public static GridPane displayUser(){
+   public static GridPane displayUsers(){
      GridPane gp = new GridPane();
      gp.setId("gp");
      gp.setPadding(new Insets(40));
@@ -124,25 +162,27 @@ public class menu extends Application
 
    public static GridPane Search(){
      GridPane gr = new GridPane();
-     gr.setPadding(new Insets(20));
+     gr.setPadding(new Insets(40, 0, 0, 80));
 
      TextField bool = new TextField("false");
      Button btns = new Button("Q");
+     btns.setId("btns");
 
      TextField search=new TextField();
-     search.setPrefWidth(250);
-     search.getStyleClass().add("tf");
+     search.setId("tf");
      search.setPromptText("search");
      gr.addRow(0, search, btns);
-     gr.setGridLinesVisible(true);
+     gr.setGridLinesVisible(false);
      Button btnC = new Button("Clear");
 
      btns.setOnMouseClicked((MouseEvent event) -> {
              //set textfield values
-             TextField b = new TextField(search.getText());
+             //TextField b = new TextField(search.getText());
              String[] ar = passUsers();
              for (int x = 1; x < 5; x++){
                Button r = new Button(ar[x]);
+               r.setId("ed");
+               r.setTranslateX(15);
                gr.addRow(x, r);
                r.setOnMouseClicked((MouseEvent evnt) -> {
                  TextField s = displaySearch();
@@ -150,7 +190,7 @@ public class menu extends Application
                  gr.addRow(0, displayResult(r, btnC));
                });
              }
-             gr.addRow(5, b);
+             //gr.addRow(5, b);
              gr.addRow(6, btnC);
              search.clear();
          });
