@@ -104,13 +104,17 @@ public class menu extends Application
 
      Tab tab1 = new Tab();
      tab1.setText("Add/Remove");
-     tab1.setContent(new Text("hi"));
+     tab1.setContent(
+     Add()
+     );
      tab1.setClosable(false);
      tabPane.getTabs().add(tab1);
 
      Tab tab2 = new Tab();
      tab2.setText("Survey");
-     tab2.setContent(new Text("hi"));
+     tab2.setContent(
+     survey()
+     );
      tab2.setClosable(false);
      tabPane.getTabs().add(tab2);
 
@@ -217,9 +221,12 @@ public class menu extends Application
 
    public static VBox displayResult(Button result, Button reset){
      String chosen = result.getText();
+     result.setId("result");
      Image i = new Image("Picture3.png", 60, 60, false, false);
      ImageView imgVe = new ImageView(i);
+     //imgVe.setAlignment(Pos.CENTER);
      VBox v = new VBox();
+     v.setAlignment(Pos.CENTER);
      Button te = new Button("Course: Software Engineering");
      te.setId("course");
      Button te2 = new Button("Qualification: Software Engineering Degree");
@@ -230,8 +237,58 @@ public class menu extends Application
      return v;
    }
 
-   public static void Add(){
-     TextField addUser = new TextField("Add User to System");
+   public static GridPane Add(){
+     GridPane addUser = new GridPane();
+     Text title = new Text("Add User to System");
+     Text userT = new Text("Username");
+     TextField userName = new TextField("Username");
+     Text passT = new Text("Password");
+     TextField passWord = new TextField("Password");
+     Text toggle = new Text("UserType");
+     ToggleGroup group = new ToggleGroup();
+     RadioButton button1 = new RadioButton("option 1");
+     RadioButton button2 = new RadioButton("option 2");
+     RadioButton button3 = new RadioButton("option 3");
+     RadioButton button4 = new RadioButton("option 4");
+     button1.setToggleGroup(group);
+     button2.setToggleGroup(group);
+     button3.setToggleGroup(group);
+     button4.setToggleGroup(group);
+     CheckBox c1 = new CheckBox("Radio one");
+     CheckBox c2 = new CheckBox("Radio Mirchi");
+     CheckBox c3 = new CheckBox("Red FM");
+     CheckBox c4 = new CheckBox("FM GOLD");
+     Button submit = new Button("Submit");
+
+     addUser.addRow(0, title);
+     addUser.addRow(1, userT, passT);
+     addUser.addRow(2, userName, passWord);
+     addUser.addRow(3, toggle);
+     addUser.addRow(4, button1, c1);
+     addUser.addRow(5, button2, c2);
+     addUser.addRow(6, button3, c3);
+     addUser.addRow(7, button4, c4);
+     addUser.addRow(8, submit);
+
+     addUser.setHgap(10); //horizontal gap in pixels => that's what you are asking for
+     addUser.setVgap(10); //vertical gap in pixels
+     addUser.setPadding(new Insets(40, 40, 40, 40));
+     addUser.setId("newUser");
+
+     return addUser;
+   }
+
+   public static VBox survey(){
+     VBox surve = new VBox();
+     Text newSurvey = new Text("Create new survey:");
+     TextField question = new TextField();
+     question.setPrefWidth(100);
+     question.setMaxWidth(300);
+     Button clear = new Button("Clear");
+     Button add = new Button("Add");
+     surve.getChildren().addAll(newSurvey, question, clear, add);
+     surve.setPadding(new Insets(40,40,40,40));
+     return surve;
    }
 
 }

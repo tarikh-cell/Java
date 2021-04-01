@@ -51,8 +51,15 @@
   -fx-min-width: 30em;
 }
 
-#ed, #course, #qualification, #region{
+#ed{
   -fx-background-color: rgb(192,192,192,0.5);
+  -fx-min-height: 3em;
+  -fx-min-width: 32em;
+  -fx-background-radius: 0 0 0 0;
+}
+
+#course, #qualification, #region, #result{
+  -fx-background-color: white;
   -fx-min-height: 3em;
   -fx-min-width: 32em;
   -fx-background-radius: 0 0 0 0;
