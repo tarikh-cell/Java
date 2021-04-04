@@ -165,8 +165,11 @@ public class menu extends Application
    }
 
    public static GridPane Search(){
+     GridPane spanGrid = new GridPane();
+
+
      GridPane gr = new GridPane();
-     gr.setPadding(new Insets(40, 0, 0, 80));
+     spanGrid.setPadding(new Insets(40, 0, 0, 80));
 
      TextField bool = new TextField("false");
      Button btns = new Button("Q");
@@ -176,16 +179,29 @@ public class menu extends Application
      search.setId("tf");
 
      search.setPromptText("search");
-     gr.addRow(0, search, btns);
+     //gr.addRow(0, search, btns);
      gr.setGridLinesVisible(false);
      Button btnC = new Button("Clear");
      btnC.setId("clearButton");
 
+     spanGrid.addRow(0, search, btns);
+
+     ScrollPane scrollPane = new ScrollPane();
+     scrollPane.setContent(gr);
+     scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
+     scrollPane.vbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.ALWAYS);
+     String[] pr = passUsers();
+     if (pr.length > 6){
+     scrollPane.setPrefViewportHeight(400);
+    }
+
      btns.setOnMouseClicked((MouseEvent event) -> {
              //set textfield values
              //TextField b = new TextField(search.getText());
+             spanGrid.addRow(1, scrollPane);
+             spanGrid.setColumnSpan(scrollPane, 2);
              String[] ar = passUsers();
-             for (int x = 1; x < 5; x++){
+             for (int x = 1; x < ar.length; x++){
                Button r = new Button(ar[x]);
                r.setId("ed");
                gr.addRow(x, r);
@@ -195,27 +211,30 @@ public class menu extends Application
                r.setOnMouseClicked((MouseEvent evnt) -> {
                  TextField s = displaySearch();
                  gr.getChildren().clear();
-                 gr.addRow(0, displayResult(r, btnC));
+                 spanGrid.getChildren().clear();
+                 spanGrid.addRow(0, displayResult(r, btnC));
                });
              }
              //gr.addRow(5, b);
-             gr.addRow(6, btnC);
-             gr.setColumnSpan(btnC, 2);
-             search.clear();
+             spanGrid.addRow(ar.length + 1, btnC);
+             spanGrid.setColumnSpan(btnC, 2);
          });
 
      btnC.setOnMouseClicked((MouseEvent event) -> {
              //set textfield values
+             search.clear();
+             spanGrid.getChildren().clear();
+             spanGrid.addRow(0, search, btns);
              gr.getChildren().clear();
-             gr.addRow(0, search, btns);
              search.setStyle("-fx-background-radius: 20 0 0 20;");
              btns.setStyle("-fx-background-radius: 0 20 20 0;");
      });
-     return gr;
+
+     return spanGrid;
    }
 
    public static String[] passUsers(){
-     String[] arr  = {"", "Name: Khaludi, Id: 19029021", "Name: Khalud, Id: 19029021", "Name: Khaldi, Id: 19029021", "Name: Khalid, Id: 19029021"};
+     String[] arr  = {"", "Name: Khalid, Id: 19029021", "Name: Khalid, Id: 19029021", "Name: Khalid, Id: 19029021", "Name: Khalid, Id: 19029021", "Name: Khalid, Id: 19029021", "Name: Khalid, Id: 19029021", "Name: Khalid, Id: 19029021", "Name: Khalid, Id: 19029021", "Name: Khalid, Id: 19029021", "Name: Khalid, Id: 19029021", "Name: Khalid, Id: 19029021", "Name: Khalid, Id: 19029021", "Name: Khalid, Id: 19029021"};
      return arr;
    }
 
@@ -233,7 +252,8 @@ public class menu extends Application
      te2.setId("qualification");
      Button te3 = new Button("Region: London");
      te3.setId("region");
-     v.getChildren().addAll(imgVe, result, te, te2, te3, reset);
+     Button remove = new Button("Remove User");
+     v.getChildren().addAll(imgVe, result, te, te2, te3, remove, reset);
      return v;
    }
 
@@ -245,30 +265,30 @@ public class menu extends Application
      Text passT = new Text("Password");
      TextField passWord = new TextField("Password");
      Text toggle = new Text("UserType");
+     String identify = "Id: " + "190465098";
+     TextField iD = new TextField(identify);
      ToggleGroup group = new ToggleGroup();
-     RadioButton button1 = new RadioButton("option 1");
-     RadioButton button2 = new RadioButton("option 2");
-     RadioButton button3 = new RadioButton("option 3");
-     RadioButton button4 = new RadioButton("option 4");
+     RadioButton button1 = new RadioButton("Trainee");
+     RadioButton button2 = new RadioButton("Trainer");
+     RadioButton button3 = new RadioButton("Course Scheduler");
+     RadioButton button4 = new RadioButton("Admin");
      button1.setToggleGroup(group);
      button2.setToggleGroup(group);
      button3.setToggleGroup(group);
      button4.setToggleGroup(group);
-     CheckBox c1 = new CheckBox("Radio one");
-     CheckBox c2 = new CheckBox("Radio Mirchi");
-     CheckBox c3 = new CheckBox("Red FM");
-     CheckBox c4 = new CheckBox("FM GOLD");
+     //CheckBox c1 = new CheckBox("Radio one");
      Button submit = new Button("Submit");
 
      addUser.addRow(0, title);
      addUser.addRow(1, userT, passT);
      addUser.addRow(2, userName, passWord);
-     addUser.addRow(3, toggle);
-     addUser.addRow(4, button1, c1);
-     addUser.addRow(5, button2, c2);
-     addUser.addRow(6, button3, c3);
-     addUser.addRow(7, button4, c4);
-     addUser.addRow(8, submit);
+     addUser.addRow(3, iD);
+     addUser.addRow(4, toggle);
+     addUser.addRow(5, button1);
+     addUser.addRow(6, button2);
+     addUser.addRow(7, button3);
+     addUser.addRow(8, button4);
+     addUser.addRow(9, submit);
 
      addUser.setHgap(10); //horizontal gap in pixels => that's what you are asking for
      addUser.setVgap(10); //vertical gap in pixels
