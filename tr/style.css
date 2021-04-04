@@ -1,6 +1,19 @@
 #schedule{
   -fx-font-size: 20;
-  -fx-background-image: url("Picture3.png");
+}
+
+#emptySlot{
+  -fx-background-radius: 5.0;
+  -fx-background-color: beige;
+  -fx-min-width: 90;
+  -fx-min-height: 60;
+}
+
+#calendarSlot{
+  -fx-background-radius: 5.0;
+  -fx-background-color: green;
+  -fx-font-size: 10;
+  -fx-max-width: 70;
 }
 
 #FDM{

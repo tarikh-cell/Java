@@ -252,17 +252,25 @@ public class trainer extends Application
      Text[] days = {new Text("Monday"), new Text("Tuesday"), new Text("Wednesday"), new Text("Thursday"), new Text("Friday")};
      //for (int j = 0; j < times.length; j++){
      //}
-     schedule.addRow(0, new Text(""), new Text("Monday"), new Text("Tuesday"), new Text("Wednesday"), new Text("Thursday"), new Text("Friday"));
-     schedule.addRow(1, times[0]);
-     schedule.addRow(2, times[1]);
-     schedule.addRow(3, times[2]);
-     schedule.addRow(4, times[3]);
-     schedule.addRow(5, times[4]);
-     schedule.addRow(6, times[5]);
-     schedule.addRow(7, times[6]);
-     schedule.addRow(8, times[7]);
-     schedule.setHgap(20);
-     schedule.setVgap(20);
+     //VBox empty = new VBox();
+     //empty.setId("emptySlot");
+     Separator separator1 = new Separator();
+     schedule.addRow(0, new Text(""), days[0], days[1], days[2], days[3], days[4]);
+     for (int j = 1; j < times.length; j++){
+       VBox calSlot = new VBox();
+       Text slot = new Text("Software Engineering");
+       Text time = new Text("09:00 - 10:00");
+       Text trainer = new Text("khaludi");
+       Text region = new Text("London");
+       calSlot.getChildren().addAll(time, slot, trainer, region);
+       calSlot.setId("calendarSlot");
+       VBox empty = new VBox();
+       empty.setId("emptySlot");
+       schedule.addRow(j, times[j], empty, calSlot);
+     }
+
+     schedule.setHgap(1);
+     schedule.setVgap(1);
      //schedule.setGridLinesVisible(true);
      return schedule;
    }
