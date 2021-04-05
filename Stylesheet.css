@@ -1,5 +1,9 @@
+#background{
+  -fx-background-image: url("FDM-Birmingham.jpg");
+}
+
 #FDM{
-  -fx-font:bold 60pt "Arial";
+  -fx-font:bold 30pt "Arial";
   -fx-text-fill: white;
   -fx-alignment: center;
 }
@@ -8,15 +12,24 @@
     -fx-background-color: transparent , transparent , transparent;
     -fx-border-style: hidden hidden solid hidden;
     -fx-border-width: 2;
-    -fx-border-color: grey;
-    -fx-text-fill: white;
+    -fx-border-color: black;
+    -fx-text-fill: black;
 }
 
 #btn{
-  -fx-background-color: deepskyblue;
+  -fx-background-color: rgb(192,192,192,0.1);
   -fx-font: 10pt "Arial";
 }
 
 #cr{
   -fx-text-fill: white;
+}
+
+#userForm{
+  -fx-border-color: blue;
+  -fx-border-width: 2px 0px 0px 0px;
+  -fx-border-radius: 1%;
+  -fx-max-width: 25em;
+  -fx-max-height: 17em;
+  -fx-background-color: rgb(255,255,255,0.1);
 }
