@@ -1,19 +1,29 @@
 #schedule{
   -fx-font-size: 20;
+  -fx-background-color: rgb(192,192,192,0.1);
 }
 
 #emptySlot{
   -fx-background-radius: 5.0;
-  -fx-background-color: beige;
+  -fx-background-color: white;
   -fx-min-width: 90;
   -fx-min-height: 60;
+  -fx-font-size: 10;
+  -fx-border-width: 3;
+  -fx-border-color: blue;
+  -fx-border-width: 2px 0px 0px 0px;
+  -fx-border-radius: 5%;
 }
 
 #calendarSlot{
   -fx-background-radius: 5.0;
-  -fx-background-color: green;
+  -fx-background-color: white;
   -fx-font-size: 10;
   -fx-max-width: 70;
+  -fx-border-width: 3;
+  -fx-border-color: blue;
+  -fx-border-width: 2px 0px 0px 0px;
+  -fx-border-radius: 5%;
 }
 
 #FDM{
